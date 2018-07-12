@@ -1,2 +1,2 @@
 # Decentralized-Crowdfunding-Campaign-Etherium
-Smart contract that simulated a decentralized crowdfunding
+Smart contract that simulates a decentralized crowdfunding
