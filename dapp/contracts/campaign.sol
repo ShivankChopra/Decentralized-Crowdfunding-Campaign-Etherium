@@ -1,5 +1,19 @@
 pragma solidity ^0.4.24;
 
+contract CampaignFactory{
+    address[] public deployedCampaigns;
+    
+    function createCampaign(uint _minimumContribution) public {
+        address newCampaignAddress = new Campaign(_minimumContribution, msg.sender);
+        deployedCampaigns.push(newCampaignAddress);
+    }
+    
+    function getAllCampaigns() public view returns(address[]){
+        return deployedCampaigns;
+    }
+}
+
+// represents single campaign
 contract Campaign{
     struct Request{         // To represent a spending reuest
         string description;
@@ -21,9 +35,9 @@ contract Campaign{
         _;
     }
     
-    constructor(uint _minimumContribution) public {
+    constructor(uint _minimumContribution, address _manager) public {
         minimumContribution = _minimumContribution;
-        manager = msg.sender;
+        manager = _manager;
     }
     
     function contribute() public payable {
